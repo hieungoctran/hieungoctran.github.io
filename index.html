@@ -213,6 +213,10 @@
   .card-meta { padding: 22px 6px 0; }
   .card h3 { font-size: 32px; }
   .card p { color: var(--muted); font-size: 16px; margin-top: 8px; max-width: 46ch; }
+  .card .role { margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-strong); }
+  .card .did { display: grid; gap: 9px; margin-top: 16px; max-width: 60ch; }
+  .card .did li { position: relative; padding-left: 22px; font-size: 15.5px; line-height: 1.55; color: var(--muted); }
+  .card .did li::before { content: ""; position: absolute; left: 1px; top: .5em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 1.5px solid var(--edge); }
   .card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
   .card.wide { grid-column: 1 / -1; }
   .card.wide .thumb { aspect-ratio: 13 / 4; }
@@ -381,9 +385,16 @@
           <img src="images/match-and-score.webp" alt="Match &amp; Score app icon: a footballer heading a ball" width="1000" height="688" loading="lazy">
         </div>
         <div class="card-meta">
+          <p class="role">GearGames · May 2020 – Dec 2023</p>
           <h3>Match &amp; Score</h3>
-          <p>Mobile football game.</p>
-          <div class="tags"><span class="tag">Game Design</span><span class="tag">Football</span></div>
+          <p>Match-3 game.</p>
+          <ul class="did">
+            <li>Designed PvE and meta-progression systems to drive engagement and long-term retention.</li>
+            <li>Used telemetry data to evaluate feature performance and guide design iterations.</li>
+            <li>Ran A/B tests on core elements (logo, UX) to validate decisions before launch.</li>
+            <li>Tracked D1/D3/D7/D30 retention as a feedback loop for tuning mechanics, not just reporting.</li>
+          </ul>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Match-3</span><span class="tag">Football</span></div>
           <span class="card-link">View on APKPure <b aria-hidden="true">↗</b></span>
         </div>
       </a>
@@ -393,9 +404,14 @@
           <img src="images/xcom-legends.webp" alt="XCOM Legends key art" width="1000" height="688" loading="lazy">
         </div>
         <div class="card-meta">
+          <p class="role">GearGames · Jan 2024 – May 2024</p>
           <h3>XCOM Legends</h3>
-          <p>Turn-based tactical strategy.</p>
-          <div class="tags"><span class="tag">Game Design</span><span class="tag">Tactical Strategy</span></div>
+          <p>Turn-based RPG.</p>
+          <ul class="did">
+            <li>Designed seasonal event systems and the character release cadence as core gameplay content.</li>
+            <li>Planned feature rollouts with stakeholders, balancing scope against systems design goals.</li>
+          </ul>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Turn-based RPG</span></div>
           <span class="card-link">View on TapTap <b aria-hidden="true">↗</b></span>
         </div>
       </a>
@@ -405,9 +421,15 @@
           <img src="images/marvel-strike-force.webp" alt="Marvel Strike Force key art" width="1200" height="675" loading="lazy">
         </div>
         <div class="card-meta">
+          <p class="role">GearGames · Jun 2024 – Dec 2025</p>
           <h3>Marvel Strike Force</h3>
-          <p>Mobile squad-based RPG.</p>
-          <div class="tags"><span class="tag">Game Design</span><span class="tag">Mobile RPG</span></div>
+          <p>Mobile turn-based squad RPG.</p>
+          <ul class="did">
+            <li>Configured stats and data for all character designs.</li>
+            <li>Wrote feature specs for new character releases, Battle Pass and event systems, defining mechanics, rules and balancing before handoff to engineering.</li>
+            <li>Analyzed player feedback to find friction points and proposed mechanic and UX changes to improve engagement.</li>
+          </ul>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Mobile RPG</span><span class="tag">Live Ops</span></div>
           <span class="card-link">View on Google Play <b aria-hidden="true">↗</b></span>
         </div>
       </a>
@@ -417,9 +439,15 @@
           <img src="images/brainrot-claw-machine.webp" alt="Brainrot Claw Machine: a cartoon character grabbed by a claw" width="1000" height="688" loading="lazy">
         </div>
         <div class="card-meta">
+          <p class="role">Rivrs · Jan 2026 – Present</p>
           <h3>Brainrot Claw Machine</h3>
           <p>Roblox claw-machine game.</p>
-          <div class="tags"><span class="tag">Game Design</span><span class="tag">Roblox</span><span class="tag">Casual</span></div>
+          <ul class="did">
+            <li>Balanced the game and managed its in-game economy, working directly through production to the live game.</li>
+            <li>Wrote the GDDs for core gameplay and UX wireframes, shaping progression and mechanics.</li>
+            <li>Collaborated cross-functionally to ship features live.</li>
+          </ul>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Roblox</span><span class="tag">Economy</span></div>
           <span class="card-link">Play on Roblox <b aria-hidden="true">↗</b></span>
         </div>
       </a>
@@ -429,9 +457,15 @@
           <img src="images/ana-journey-banner.webp" alt="Four illustrated scenes from Ana's Journey: a lighthouse at night, a snowy train station, a winter bakery and a Christmas market" width="3120" height="960" loading="lazy">
         </div>
         <div class="card-meta">
+          <p class="role">Personal project</p>
           <h3>Ana's Journey</h3>
-          <p>My personal project: a cozy puzzle game about Ana's small stories. Place the missing objects to bring each illustrated scene to life, from a lighthouse to a winter market.</p>
-          <div class="tags"><span class="tag tag-accent">Personal Project</span><span class="tag">Game Design</span><span class="tag">Cozy Puzzle</span></div>
+          <p>A cozy puzzle game about Ana's small stories. Place the missing objects to bring each illustrated scene to life, from a lighthouse to a winter market.</p>
+          <ul class="did">
+            <li>Shaped the game as a library of stories (a lighthouse, a winter station, a bakery, a Christmas market), each chapter one playable scene.</li>
+            <li>Tuned the difficulty curve from easy scenes (6 pieces, 2 layers) to hard ones (20+ pieces, 3 layers).</li>
+            <li>Prototyped and built the game in Godot, and released it on itch.io.</li>
+          </ul>
+          <div class="tags"><span class="tag tag-accent">Personal Project</span><span class="tag">Game Design</span><span class="tag">Cozy Puzzle</span><span class="tag">Godot</span></div>
           <span class="card-link">Play on itch.io <b aria-hidden="true">↗</b></span>
         </div>
       </a>
