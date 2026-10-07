@@ -213,6 +213,9 @@
   .card-meta { padding: 22px 6px 0; }
   .card h3 { font-size: 32px; }
   .card p { color: var(--muted); font-size: 16px; margin-top: 8px; max-width: 46ch; }
+  .card.private:hover .thumb { transform: none; box-shadow: 0 6px 0 var(--edge); }
+  .card .card-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 14px; font-style: italic; color: var(--muted); }
+  .card .card-note svg { flex: none; width: 16px; height: 16px; margin-top: 3px; }
   .card .role { margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-strong); }
   .card .did { display: grid; gap: 9px; margin-top: 16px; max-width: 60ch; }
   .card .did li { position: relative; padding-left: 22px; font-size: 15.5px; line-height: 1.55; color: var(--muted); }
@@ -380,7 +383,7 @@
     -->
     <div class="grid">
 
-      <a class="card reveal" href="https://apkpure.com/match-score/com.alleylabs.matchscore" target="_blank" rel="noopener">
+      <article class="card private reveal">
         <div class="thumb" style="--a:#ffe066; --b:#ffb300">
           <img src="images/match-and-score.webp" alt="Match &amp; Score app icon: a footballer heading a ball" width="1000" height="688" loading="lazy">
         </div>
@@ -390,14 +393,16 @@
           <p>Match-3 game.</p>
           <ul class="did">
             <li>Designed the Campaign Mode, the League PvE system and the Hero Level System, built to drive engagement and long-term retention.</li>
-            <li>Used telemetry data to evaluate feature performance and guide design iterations.</li>
             <li>Ran A/B tests on core elements (logo, UX) to validate decisions before launch.</li>
             <li>Tracked D1/D3/D7/D30 retention as a feedback loop for tuning mechanics, not just reporting.</li>
           </ul>
           <div class="tags"><span class="tag">Game Design</span><span class="tag">Match-3</span><span class="tag">Football</span></div>
-          <span class="card-link">View on APKPure <b aria-hidden="true">↗</b></span>
+          <p class="card-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            In-house game. The game is no longer public, so there is no link.
+          </p>
         </div>
-      </a>
+      </article>
 
       <a class="card reveal" href="https://www.taptap.io/app/220419" target="_blank" rel="noopener">
         <div class="thumb" style="--a:#4d9bff; --b:#0a4fc7">
@@ -483,7 +488,7 @@
     </div>
     <div class="reveal">
       <span class="eyebrow">About me</span>
-      <h2>Hello, I'm Hieu — a game designer who loves <em>creating games</em>.</h2>
+      <h2>Hello, I'm Hieu — a game designer who loves <em>building fun</em>.</h2>
       <p>I'm 29 and have over 5 years of experience in the gaming industry, in game design in particular.</p>
       <p>I've been fortunate to collaborate on projects with big studios around the world, which has significantly broadened my knowledge.</p>
       <p>As a Game Designer, I believe that core gameplay mechanics and systems play a crucial role in driving player engagement and retention.</p>
