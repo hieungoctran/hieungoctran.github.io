@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hieu Tran — Game Designer</title>
+<meta name="description" content="Hieu Tran is a Game Designer with 5+ years in the industry, crafting core gameplay and systems that drive player engagement and retention.">
+<meta property="og:title" content="Hieu Tran — Game Designer">
+<meta property="og:description" content="Core gameplay and systems that drive engagement and retention. Selected work: Match &amp; Score, XCOM Legends, Marvel Strike Force, Brainrot Claw Machine, Ana's Journey.">
+<meta name="theme-color" content="#f6f9ff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffd23f'/%3E%3Ctext x='32' y='45' font-size='36' font-family='Georgia,serif' font-style='italic' text-anchor='middle' fill='%2314213d'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  // Apply saved/system theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<style>
+  :root {
+    --bg: #f6f9ff;
+    --bg-2: #e8f0ff;
+    --card: #ffffff;
+    --ink: #14213d;
+    --muted: #586a8d;
+    --line: #d9e3f7;
+    --edge: #14213d;            /* chunky outlines */
+    --accent: #ffd23f;          /* yellow: buttons, highlights */
+    --accent-ink: #14213d;      /* text on yellow */
+    --accent-strong: #0a63e6;   /* ocean blue: emphasis text */
+    --band: #0a63e6;            /* marquee band */
+    --blue: #0a63e6;
+    --red: #e60012;
+    --green: #1fa35c;
+    --yellow: #ffd23f;
+    --radius: 26px;
+    --wrap: 1120px;
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --shadow: 0 24px 48px -26px rgba(20, 33, 61, .35);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1226;
+    --bg-2: #111a36;
+    --card: #16214a;
+    --ink: #eef3ff;
+    --muted: #9fb0d6;
+    --line: #25345f;
+    --edge: #3d528c;
+    --accent: #ffd23f;
+    --accent-ink: #14213d;
+    --accent-strong: #6aa6ff;
+    --band: #1448b8;
+    --blue: #6aa6ff;
+    --red: #ff5a4d;
+    --green: #4cd68a;
+    --shadow: 0 24px 48px -26px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1226; --bg-2: #111a36; --card: #16214a; --ink: #eef3ff;
+      --muted: #9fb0d6; --line: #25345f; --edge: #3d528c; --accent: #ffd23f;
+      --accent-ink: #14213d; --accent-strong: #6aa6ff; --band: #1448b8;
+      --blue: #6aa6ff; --red: #ff5a4d; --green: #4cd68a;
+      --shadow: 0 24px 48px -26px rgba(0, 0, 0, .7);
+      color-scheme: dark;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; margin: 0; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; border-radius: 8px; }
+
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 10px; z-index: 100; }
+  .skip:focus { left: 8px; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  em { font-style: italic; color: var(--accent-strong); }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(1.3) blur(14px);
+    -webkit-backdrop-filter: saturate(1.3) blur(14px);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { font-family: var(--display); font-size: 24px; font-style: italic; text-decoration: none; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent-strong); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { text-decoration: none; font-size: 15px; font-weight: 600; color: var(--muted); transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--line); cursor: pointer;
+    transition: background .2s, border-color .2s;
+  }
+  .icon-btn:hover { background: var(--bg-2); border-color: var(--muted); }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .sun { display: none; }
+  :root[data-theme="dark"] .sun { display: block; }
+  :root[data-theme="dark"] .moon { display: none; }
+  .menu-btn { display: none; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font: 700 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+    --sh: var(--edge);
+    border: 2px solid var(--sh); box-shadow: 0 4px 0 var(--sh);
+    transition: transform .15s, box-shadow .15s, background .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--sh); }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--sh); }
+  .btn-primary { --sh: var(--accent-ink); background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { color: var(--ink); background: var(--card); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 96px 0 72px; position: relative; overflow: hidden; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(46px); pointer-events: none; opacity: .55; }
+  .blob.b1 { width: 460px; height: 460px; right: -120px; top: -120px; background: #ffd966; }
+  .blob.b2 { width: 360px; height: 360px; left: -140px; bottom: -140px; background: #7db8ff; opacity: .5; }
+  :root[data-theme="dark"] .blob { opacity: .16; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px;
+    font-size: 14px; font-weight: 600; color: var(--muted); background: var(--card);
+    position: relative;
+  }
+  .status .dots { display: inline-flex; gap: 4px; }
+  .status .dots i { width: 9px; height: 9px; border-radius: 50%; }
+  .status .dots i:nth-child(1) { background: var(--red); }
+  .status .dots i:nth-child(2) { background: var(--blue); }
+  .status .dots i:nth-child(3) { background: var(--yellow); }
+  .status .dots i:nth-child(4) { background: var(--green); }
+  .hero h1 { font-size: clamp(44px, 8vw, 100px); margin: 28px 0 24px; max-width: 14ch; position: relative; }
+  .hero .lead { font-size: clamp(18px, 2vw, 21px); color: var(--muted); max-width: 52ch; position: relative; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; position: relative; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 72px 0 0; padding-top: 32px; border-top: 1px solid var(--line); position: relative; }
+  .stat b { display: block; font-family: var(--display); font-size: clamp(32px, 4.5vw, 52px); font-weight: 400; line-height: 1; letter-spacing: -0.02em; }
+  .stat b::after { content: ""; display: block; width: 40px; height: 6px; border-radius: 3px; margin-top: 12px; background: var(--c, var(--blue)); }
+  .stat:nth-child(1) { --c: var(--red); }
+  .stat:nth-child(2) { --c: var(--blue); }
+  .stat:nth-child(3) { --c: var(--yellow); }
+  .stat span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+  /* ---------- Marquee ---------- */
+  .marquee { border-block: 3px solid var(--edge); background: var(--band); overflow: hidden; padding: 18px 0; }
+  .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee ul { display: flex; gap: 44px; padding-right: 44px; }
+  .marquee li { font-family: var(--display); font-size: 26px; font-style: italic; color: #fff; white-space: nowrap; display: flex; align-items: center; gap: 44px; }
+  .marquee li::after { content: "✦"; font-style: normal; color: var(--accent); font-size: 16px; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ---------- Sections ---------- */
+  section { padding: 104px 0; }
+  .section-head { margin-bottom: 44px; }
+  .section-head h2 { font-size: clamp(36px, 5.5vw, 64px); margin-top: 10px; }
+  .section-head p { color: var(--muted); margin-top: 14px; max-width: 52ch; }
+
+  /* ---------- Work ---------- */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 28px; }
+  .card { display: block; text-decoration: none; color: inherit; }
+  .card-link { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--accent-strong); }
+  .card-link b { display: inline-block; transition: transform .2s; }
+  .card:hover .card-link b { transform: translate(3px, -3px); }
+  .thumb {
+    position: relative; overflow: hidden; border-radius: var(--radius);
+    aspect-ratio: 16 / 11; background: linear-gradient(135deg, var(--a), var(--b));
+    border: 3px solid var(--edge); box-shadow: 0 6px 0 var(--edge);
+    transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;
+  }
+  .thumb::before, .thumb::after { content: ""; position: absolute; border-radius: 50%; }
+  .thumb::before { width: 62%; aspect-ratio: 1; left: -14%; bottom: -50%; background: rgba(255,255,255,.34); }
+  .thumb::after { width: 36%; aspect-ratio: 1; right: 9%; top: -16%; background: rgba(255,255,255,.2); }
+  .thumb .ph {
+    position: absolute; inset: 0; display: grid; place-items: center; z-index: 1;
+    font-family: var(--display); font-style: italic; font-size: clamp(64px, 9vw, 112px);
+    color: var(--ph, #14213d); letter-spacing: -0.04em;
+  }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
+  .card:hover .thumb { transform: translateY(-4px); box-shadow: 0 10px 0 var(--edge); }
+  .card-meta { padding: 22px 6px 0; }
+  .card h3 { font-size: 32px; }
+  .card p { color: var(--muted); font-size: 16px; margin-top: 8px; max-width: 46ch; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .card.wide { grid-column: 1 / -1; }
+  .card.wide .thumb { aspect-ratio: 13 / 4; }
+  .tag { font-size: 12.5px; font-weight: 700; letter-spacing: .03em; padding: 5px 12px; border-radius: 999px; background: var(--bg-2); color: var(--muted); border: 1px solid var(--line); }
+  .tag.tag-accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent-ink); }
+
+  /* ---------- About ---------- */
+  .about { background: var(--bg-2); border-block: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: center; }
+  .portrait {
+    aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; position: relative;
+    background: linear-gradient(160deg, #7cc4ff, #2a7bff 55%, #0a3fb8);
+    display: grid; place-items: center;
+    font-family: var(--display); font-style: italic; font-size: 140px; color: #fff;
+    border: 3px solid var(--edge); box-shadow: 8px 8px 0 var(--accent);
+  }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .about h2 { font-size: clamp(34px, 4.6vw, 54px); margin: 10px 0 24px; }
+  .about p { color: var(--muted); margin-bottom: 16px; max-width: 58ch; }
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; margin: 32px 0 0; }
+  .facts dt { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 4px 0 0; font-weight: 600; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .skill-box { padding: 32px; border: 2px solid var(--edge); border-radius: var(--radius); background: var(--card); box-shadow: 6px 6px 0 var(--pop, var(--accent)); }
+  .skill-box:nth-child(2) { --pop: var(--blue); }
+  .skill-box h3 { font-size: 28px; margin-bottom: 20px; }
+  .skill-box ul { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-box li { padding: 9px 18px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); font-size: 15px; font-weight: 600; }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; padding-bottom: 72px; position: relative; overflow: hidden; }
+  .contact .wrap { position: relative; }
+  .contact h2 { font-size: clamp(44px, 9vw, 112px); margin: 14px auto 28px; max-width: 12ch; }
+  .contact .lead { color: var(--muted); max-width: 46ch; margin: 0 auto 36px; }
+  .mail {
+    display: inline-block; font-family: var(--display); font-style: italic;
+    font-size: clamp(22px, 4.4vw, 46px); text-decoration: none; letter-spacing: -0.02em;
+    border-bottom: 2px solid var(--accent); padding-bottom: 4px; word-break: break-all;
+    transition: color .2s;
+  }
+  .mail:hover { color: var(--accent-strong); }
+  .contact-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    section { padding: 72px 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .portrait { max-width: 360px; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    .hero { padding: 56px 0 48px; }
+    .stats { gap: 16px; margin-top: 48px; }
+    .grid { grid-template-columns: 1fr; gap: 40px; }
+    .card h3 { font-size: 28px; }    .menu-btn { display: grid; }
+    .nav-links {
+      position: absolute; left: 0; right: 0; top: 68px; flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      padding: 8px 16px 16px; display: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 14px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+    .facts { grid-template-columns: 1fr; }
+    .skill-box { padding: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .marquee-track { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .btn, .thumb { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+<a class="skip" href="#work">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Home">Hieu<span>.</span>Tran</a>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <i class="blob b1"></i><i class="blob b2"></i>
+  <div class="wrap">
+    <span class="status"><span class="dots"><i></i><i></i><i></i><i></i></span> Game Designer · 5+ years in games</span>
+    <h1>I design games players <em>come back to</em>.</h1>
+    <p class="lead">
+      Hi, I'm Hieu. I craft core gameplay mechanics and systems that drive
+      player engagement and retention.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">
+        View my work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <dl class="stats">
+      <div class="stat"><b>5+</b><span>Years in the game industry</span></div>
+      <div class="stat"><b>5</b><span>Featured projects</span></div>
+      <div class="stat"><b>Global</b><span>Collaborations with big studios</span></div>
+    </dl>
+  </div>
+</div>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <ul><li>Game Design</li><li>Core Gameplay</li><li>Systems</li><li>Engagement</li><li>Retention</li><li>Google Sheets</li><li>Figma</li><li>Miro</li></ul>
+    <ul><li>Game Design</li><li>Core Gameplay</li><li>Systems</li><li>Engagement</li><li>Retention</li><li>Google Sheets</li><li>Figma</li><li>Miro</li></ul>
+  </div>
+</div>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2>Games I've had the joy to work on</h2>
+    </div>
+
+    <!--
+      TODO: replace each placeholder with a real screenshot — add this inside .thumb:
+        <img src="images/match-and-score.jpg" alt="Match & Score gameplay" loading="lazy">
+      and write 1–2 lines about your role in the <p>. To make a card clickable,
+      change <article> to <a href="..."> (and </article> to </a>).
+    -->
+    <div class="grid">
+
+      <article class="card reveal">
+        <div class="thumb" style="--a:#ffe066; --b:#ffb300">
+          <div class="ph">01</div>
+        </div>
+        <div class="card-meta">
+          <h3>Match &amp; Score</h3>
+          <p>Game design project.</p>
+          <div class="tags"><span class="tag">Game Design</span></div>
+        </div>
+      </article>
+
+      <a class="card reveal" href="https://www.taptap.io/app/220419" target="_blank" rel="noopener">
+        <div class="thumb" style="--a:#4d9bff; --b:#0a4fc7; --ph:#fff">
+          <div class="ph">02</div>
+        </div>
+        <div class="card-meta">
+          <h3>XCOM Legends</h3>
+          <p>Turn-based tactical strategy.</p>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Tactical Strategy</span></div>
+          <span class="card-link">View on TapTap <b aria-hidden="true">↗</b></span>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://play.google.com/store/apps/details?id=com.foxnextgames.m3&amp;hl=en&amp;gl=US" target="_blank" rel="noopener">
+        <div class="thumb" style="--a:#ff6b5e; --b:#e60012; --ph:#fff">
+          <img src="images/marvel-strike-force.webp" alt="Marvel Strike Force key art" width="1200" height="675" loading="lazy">
+        </div>
+        <div class="card-meta">
+          <h3>Marvel Strike Force</h3>
+          <p>Mobile squad-based RPG.</p>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Mobile RPG</span></div>
+          <span class="card-link">View on Google Play <b aria-hidden="true">↗</b></span>
+        </div>
+      </a>
+
+      <article class="card reveal">
+        <div class="thumb" style="--a:#5fdc97; --b:#1fa35c; --ph:#fff">
+          <div class="ph">04</div>
+        </div>
+        <div class="card-meta">
+          <h3>Brainrot Claw Machine</h3>
+          <p>Casual claw-machine game.</p>
+          <div class="tags"><span class="tag">Game Design</span><span class="tag">Casual</span></div>
+        </div>
+      </article>
+
+      <article class="card wide reveal">
+        <div class="thumb" style="--a:#8fd0ff; --b:#ffe27a">
+          <img src="images/ana-journey-banner.webp" alt="Four illustrated scenes from Ana's Journey: a lighthouse at night, a snowy train station, a winter bakery and a Christmas market" width="3120" height="960" loading="lazy">
+        </div>
+        <div class="card-meta">
+          <h3>Ana's Journey</h3>
+          <p>My personal project: a cozy puzzle game about Ana's small stories. Place the missing objects to bring each illustrated scene to life, from a lighthouse to a winter market.</p>
+          <div class="tags"><span class="tag tag-accent">Personal Project</span><span class="tag">Game Design</span><span class="tag">Cozy Puzzle</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div class="portrait reveal">
+      <!-- TODO: <img src="images/hieu.jpg" alt="Portrait of Hieu Tran"> -->
+      H
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">About me</span>
+      <h2>Hello, I'm Hieu — a game designer who loves <em>systems</em>.</h2>
+      <p>I'm 29 and have over 5 years of experience in the gaming industry, in game design in particular.</p>
+      <p>I've been fortunate to collaborate on projects with big studios around the world, which has significantly broadened my knowledge.</p>
+      <p>As a Game Designer, I believe that core gameplay mechanics and systems play a crucial role in driving player engagement and retention.</p>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Game Designer</dd></div>
+        <div><dt>Experience</dt><dd>5+ years in games</dd></div>
+        <div><dt>Focus</dt><dd>Core gameplay &amp; systems</dd></div>
+        <div><dt>Tools</dt><dd>Google Sheets, Figma, Miro</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Toolbox</span>
+      <h2>How I work</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-box reveal">
+        <h3>Design focus</h3>
+        <ul><li>Core gameplay</li><li>Systems design</li><li>Player engagement</li><li>Retention</li></ul>
+      </div>
+      <div class="skill-box reveal">
+        <h3>Tools</h3>
+        <ul><li>Google Sheets</li><li>Figma</li><li>Miro</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <span class="eyebrow">Contact</span>
+    <h2>Let's talk <em>games</em>.</h2>
+    <p class="lead">Have a project in mind, or just want to chat about game design? My inbox is always open.</p>
+    <a class="mail" href="mailto:otimusblue@gmail.com">otimusblue@gmail.com</a>
+    <div class="contact-cta">
+      <a class="btn btn-primary" href="mailto:otimusblue@gmail.com">Send an email</a>
+      <button class="btn btn-ghost" id="copy" type="button">Copy email</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Hieu Tran. All rights reserved.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // Theme toggle
+  document.getElementById('theme').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // Mobile menu
+  var menu = document.getElementById('menu');
+  var links = document.getElementById('nav-links');
+  function setMenu(open) {
+    links.classList.toggle('open', open);
+    menu.setAttribute('aria-expanded', String(open));
+  }
+  menu.addEventListener('click', function () { setMenu(!links.classList.contains('open')); });
+  links.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+
+  // Copy email
+  var copy = document.getElementById('copy');
+  copy.addEventListener('click', function () {
+    if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
+    navigator.clipboard.writeText('otimusblue@gmail.com').then(function () {
+      copy.textContent = 'Copied ✓';
+      setTimeout(function () { copy.textContent = 'Copy email'; }, 1800);
+    }, function () {});
+  });
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
